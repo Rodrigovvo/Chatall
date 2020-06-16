@@ -3,4 +3,7 @@
     <string name="digite_seu_email">Digite seu email</string>
     <string name="digite_sua_senha">Digite sua senha</string>
     <string name="cadastrar">Cadastrar</string>
+    <string name="pesquisar">Pesquisar</string>
+    <string name="configuracoes">Configurações</string>
+    <string name="sair">Sair</string>
 </resources>

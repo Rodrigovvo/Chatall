@@ -30,6 +30,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editText_EmailLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Digite seu email"
@@ -51,6 +52,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputNome">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editText_SenhaLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Digite sua senha"
@@ -58,7 +60,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/buttonCadastrar"
+        android:id="@+id/buttonEntrar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -87,6 +89,6 @@
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonCadastrar" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonEntrar" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 

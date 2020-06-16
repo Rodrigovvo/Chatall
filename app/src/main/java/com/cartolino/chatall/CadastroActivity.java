@@ -3,7 +3,6 @@ package com.cartolino.chatall;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -37,7 +36,7 @@ public class CadastroActivity extends AppCompatActivity {
         nomeCadastro = findViewById(R.id.EditText_NomeCadastro);
         emailCadastro = findViewById(R.id.EditText_EmailCadastro);
         senhaCadastro = findViewById(R.id.EditText_SenhaCadastro);
-        btnCadastrar = findViewById(R.id.buttonCadastrar);
+        btnCadastrar = findViewById(R.id.buttonEntrar);
 
 
         btnCadastrar.setOnClickListener(new View.OnClickListener() {
@@ -82,7 +81,7 @@ public class CadastroActivity extends AppCompatActivity {
     public void cadastarNovoUsuario() {
         autenticador = ConfiguracaoFirebase.getFirebaseAutenticacao();
         autenticador.createUserWithEmailAndPassword(
-                novoUsuario.getEmail(), novoUsuario.getNome()
+                novoUsuario.getEmail(), novoUsuario.getSenha()
         ).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {

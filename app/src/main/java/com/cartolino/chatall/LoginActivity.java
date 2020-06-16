@@ -21,6 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 
 public class LoginActivity extends AppCompatActivity {
@@ -116,6 +117,20 @@ public class LoginActivity extends AppCompatActivity {
                 }
         );
 
+    }
+
+    // VERIFICANDO SE JÁ EXISTE UM USUÁRIO LOGADO
+    // SE JÁ - NÃO SERÁ  EXIGIDO NOVO EMAIL E SENHA
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser usuarioAtual = autenticacao.getCurrentUser();
+        if (usuarioAtual != null){
+            abrirTelaPrincipal();
+
+        }
     }
 
     public void abrirTelaPrincipal(){

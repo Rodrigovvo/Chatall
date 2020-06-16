@@ -44,14 +44,12 @@ public class LoginActivity extends AppCompatActivity {
         buttonEntrar = findViewById(R.id.buttonEntrar);
 
 
-
         cadastro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 fazerCadastro(v);
             }
         });
-
 
 
         buttonEntrar.setOnClickListener(new View.OnClickListener() {
@@ -61,8 +59,8 @@ public class LoginActivity extends AppCompatActivity {
                 String textoEmail = editTextEmailLogin.getText().toString();
                 String textoSenha = editTextSenhaLogin.getText().toString();
 
-                if (!textoEmail.isEmpty()){
-                    if(!textoSenha.isEmpty()){
+                if (!textoEmail.isEmpty()) {
+                    if (!textoSenha.isEmpty()) {
 
                         usuario = new Usuario();
                         usuario.setSenha(textoSenha);
@@ -70,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         validarEmailSenha();
 
-                    }else{
+                    } else {
                         Toast.makeText(LoginActivity.this, "Preencha sua senha", Toast.LENGTH_SHORT).show();
                     }
 
@@ -83,9 +81,19 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    public void validarEmailSenha(){
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
+        if (usuario != null){
+            abrirTelaPrincipal();
+        }
+
+    }
+
+    public void validarEmailSenha() {
         Log.d("Email: ", "" + usuario.getEmail());
-        Log.d("Senha: ", "" +usuario.getSenha());
+        Log.d("Senha: ", "" + usuario.getSenha());
 
         autenticacao = ConfiguracaoFirebase.getFirebaseAutenticacao();
         autenticacao.signInWithEmailAndPassword(
@@ -96,42 +104,30 @@ public class LoginActivity extends AppCompatActivity {
                 new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                      if (task.isSuccessful()) {
-                          abrirTelaPrincipal();
-                      }else {
-                          String excecao = " ";
-                          try {
-                              throw task.getException();
-                          }catch (FirebaseAuthInvalidUserException e){
-                              excecao = "Usuário não cadastrado";
-                          }catch (FirebaseAuthInvalidCredentialsException e){
-                              excecao = "Senha inválida";
-                          }catch (Exception e){
-                              excecao = "Erro ao entrar no sistema: " + e.getMessage();
-                              e.printStackTrace();
-                          }
+                        if (task.isSuccessful()) {
+                            abrirTelaPrincipal();
+                        } else {
+                            String excecao = " ";
+                            try {
+                                throw task.getException();
+                            } catch (FirebaseAuthInvalidUserException e) {
+                                excecao = "Usuário não cadastrado";
+                            } catch (FirebaseAuthInvalidCredentialsException e) {
+                                excecao = "Senha inválida";
+                            } catch (Exception e) {
+                                excecao = "Erro ao entrar no sistema: " + e.getMessage();
+                                e.printStackTrace();
+                            }
 
-                          Toast.makeText(LoginActivity.this, excecao, Toast.LENGTH_SHORT).show();
-                      }
+                            Toast.makeText(LoginActivity.this, excecao, Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
         );
 
     }
 
-    // VERIFICANDO SE JÁ EXISTE UM USUÁRIO LOGADO
-    // SE JÁ - NÃO SERÁ  EXIGIDO NOVO EMAIL E SENHA
 
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        FirebaseUser usuarioAtual = autenticacao.getCurrentUser();
-        if (usuarioAtual != null){
-            abrirTelaPrincipal();
-
-        }
-    }
 
     public void abrirTelaPrincipal(){
         Intent intent = new Intent(LoginActivity.this, TelaPrincipal.class);
@@ -145,4 +141,6 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
+
+
 }

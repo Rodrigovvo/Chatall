@@ -605,6 +605,35 @@ attr state_lifted
 attr statusBarBackground
 attr statusBarForeground
 attr statusBarScrim
+attr stl_clickable
+attr stl_customTabTextLayoutId
+attr stl_customTabTextViewId
+attr stl_defaultTabBackground
+attr stl_defaultTabTextAllCaps
+attr stl_defaultTabTextColor
+attr stl_defaultTabTextHorizontalPadding
+attr stl_defaultTabTextMinWidth
+attr stl_defaultTabTextSize
+attr stl_distributeEvenly
+attr stl_dividerColor
+attr stl_dividerColors
+attr stl_dividerThickness
+attr stl_drawDecorationAfterTab
+attr stl_indicatorAlwaysInCenter
+attr stl_indicatorColor
+attr stl_indicatorColors
+attr stl_indicatorCornerRadius
+attr stl_indicatorGravity
+attr stl_indicatorInFront
+attr stl_indicatorInterpolation
+attr stl_indicatorThickness
+attr stl_indicatorWidth
+attr stl_indicatorWithoutPadding
+attr stl_overlineColor
+attr stl_overlineThickness
+attr stl_titleOffset
+attr stl_underlineColor
+attr stl_underlineThickness
 attr strokeColor
 attr strokeWidth
 attr subMenuArrow
@@ -907,6 +936,7 @@ color mtrl_textinput_focused_box_stroke_color
 color mtrl_textinput_hovered_box_stroke_color
 color notification_action_color_filter
 color notification_icon_bg_color
+color notification_material_background_media_default_color
 color primary_dark_material_dark
 color primary_dark_material_light
 color primary_material_dark
@@ -1248,6 +1278,10 @@ dimen notification_small_icon_size_as_large
 dimen notification_subtext_size
 dimen notification_top_pad
 dimen notification_top_pad_large_text
+dimen subtitle_corner_radius
+dimen subtitle_outline_width
+dimen subtitle_shadow_offset
+dimen subtitle_shadow_radius
 dimen test_mtrl_calendar_day_cornerSize
 dimen tooltip_corner_radius
 dimen tooltip_horizontal_padding
@@ -1467,6 +1501,7 @@ id accessibility_custom_action_6
 id accessibility_custom_action_7
 id accessibility_custom_action_8
 id accessibility_custom_action_9
+id action0
 id action_bar
 id action_bar_activity_content
 id action_bar_container
@@ -1494,12 +1529,14 @@ id all
 id always
 id async
 id auto
+id auto_center
 id barrier
 id beginning
 id blocking
 id bottom
 id buttonEntrar
 id buttonPanel
+id cancel_action
 id cancel_button
 id center
 id center_horizontal
@@ -1540,6 +1577,7 @@ id editText_EmailLogin
 id editText_SenhaLogin
 id edit_query
 id end
+id end_padder
 id enterAlways
 id enterAlwaysCollapsed
 id exitUntilCollapsed
@@ -1578,9 +1616,11 @@ id left
 id light
 id line1
 id line3
+id linear
 id listMode
 id list_item
 id masked
+id media_actions
 id menu_configuracoes
 id menu_pesquisa
 id menu_sair
@@ -1669,6 +1709,7 @@ id showTitle
 id skipCollapsed
 id slide
 id smallLabel
+id smart
 id snackbar_action
 id snackbar_text
 id snap
@@ -1682,6 +1723,7 @@ id src_in
 id src_over
 id standard
 id start
+id status_bar_latest_event_content
 id stretch
 id submenuarrow
 id submit_area
@@ -1729,7 +1771,9 @@ id uniform
 id unlabeled
 id up
 id useLogo
+id viewPager
 id view_offset_helper
+id viewpagerTab
 id visible
 id wide
 id withText
@@ -1816,6 +1860,8 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
+layout fragment_contatos
+layout fragment_conversas
 layout mtrl_alert_dialog
 layout mtrl_alert_dialog_actions
 layout mtrl_alert_dialog_title
@@ -1846,8 +1892,17 @@ layout mtrl_picker_text_input_date
 layout mtrl_picker_text_input_date_range
 layout notification_action
 layout notification_action_tombstone
+layout notification_media_action
+layout notification_media_cancel_action
+layout notification_template_big_media
+layout notification_template_big_media_custom
+layout notification_template_big_media_narrow
+layout notification_template_big_media_narrow_custom
 layout notification_template_custom_big
 layout notification_template_icon_group
+layout notification_template_lines_media
+layout notification_template_media
+layout notification_template_media_custom
 layout notification_template_part_chronometer
 layout notification_template_part_time
 layout select_dialog_item_material
@@ -1939,6 +1994,7 @@ string google_api_key
 string google_app_id
 string google_crash_reporting_api_key
 string google_storage_bucket
+string hello_blank_fragment
 string hide_bottom_view_on_scroll_behavior
 string icon_content_description
 string mtrl_badge_numberless_content_description
@@ -1985,6 +2041,8 @@ string project_id
 string sair
 string search_menu_title
 string status_bar_notification_info_overflow
+string titleA
+string titleB
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
 style Animation_AppCompat_Dialog
@@ -2328,9 +2386,14 @@ style TextAppearance_AppCompat_Widget_Switch
 style TextAppearance_AppCompat_Widget_TextView_SpinnerItem
 style TextAppearance_Compat_Notification
 style TextAppearance_Compat_Notification_Info
+style TextAppearance_Compat_Notification_Info_Media
 style TextAppearance_Compat_Notification_Line2
+style TextAppearance_Compat_Notification_Line2_Media
+style TextAppearance_Compat_Notification_Media
 style TextAppearance_Compat_Notification_Time
+style TextAppearance_Compat_Notification_Time_Media
 style TextAppearance_Compat_Notification_Title
+style TextAppearance_Compat_Notification_Title_Media
 style TextAppearance_Design_CollapsingToolbar_Expanded
 style TextAppearance_Design_Counter
 style TextAppearance_Design_Counter_Overflow
@@ -2750,6 +2813,7 @@ styleable View android_theme android_focusable paddingEnd paddingStart theme
 styleable ViewBackgroundHelper android_background backgroundTint backgroundTintMode
 styleable ViewPager2 android_orientation
 styleable ViewStubCompat android_id android_layout android_inflatedId
+styleable stl_SmartTabLayout stl_clickable stl_customTabTextLayoutId stl_customTabTextViewId stl_defaultTabBackground stl_defaultTabTextAllCaps stl_defaultTabTextColor stl_defaultTabTextHorizontalPadding stl_defaultTabTextMinWidth stl_defaultTabTextSize stl_distributeEvenly stl_dividerColor stl_dividerColors stl_dividerThickness stl_drawDecorationAfterTab stl_indicatorAlwaysInCenter stl_indicatorColor stl_indicatorColors stl_indicatorCornerRadius stl_indicatorGravity stl_indicatorInFront stl_indicatorInterpolation stl_indicatorThickness stl_indicatorWidth stl_indicatorWithoutPadding stl_overlineColor stl_overlineThickness stl_titleOffset stl_underlineColor stl_underlineThickness
 xml standalone_badge
 xml standalone_badge_gravity_bottom_end
 xml standalone_badge_gravity_bottom_start

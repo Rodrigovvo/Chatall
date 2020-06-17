@@ -24,12 +24,16 @@
         "source": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
     },
     {
-        "merged": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/build/intermediates/res/merged/debug/mipmap-xxhdpi_ic_launcher_round.png.flat",
-        "source": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png"
+        "merged": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/build/intermediates/res/merged/debug/layout_fragment_conversas.xml.flat",
+        "source": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/src/main/res/layout/fragment_conversas.xml"
     },
     {
         "merged": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/build/intermediates/res/merged/debug/drawable-ldpi_ic_baseline_search_24.png.flat",
         "source": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/build/generated/res/pngs/debug/drawable-ldpi/ic_baseline_search_24.png"
+    },
+    {
+        "merged": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/build/intermediates/res/merged/debug/mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png"
     },
     {
         "merged": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi_ic_launcher_round.png.flat",
@@ -50,6 +54,10 @@
     {
         "merged": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/build/intermediates/res/merged/debug/drawable-mdpi_ic_launcher_background.png.flat",
         "source": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/build/generated/res/pngs/debug/drawable-mdpi/ic_launcher_background.png"
+    },
+    {
+        "merged": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/build/intermediates/res/merged/debug/layout_fragment_contatos.xml.flat",
+        "source": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/src/main/res/layout/fragment_contatos.xml"
     },
     {
         "merged": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/build/intermediates/res/merged/debug/drawable-hdpi_ic_launcher_background.png.flat",
@@ -80,12 +88,12 @@
         "source": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/build/generated/res/pngs/debug/drawable-xxhdpi/ic_launcher_background.png"
     },
     {
-        "merged": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/build/intermediates/res/merged/debug/mipmap-hdpi_ic_launcher.png.flat",
-        "source": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/src/main/res/mipmap-hdpi/ic_launcher.png"
-    },
-    {
         "merged": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/build/intermediates/res/merged/debug/drawable-xxxhdpi_ic_baseline_search_24.png.flat",
         "source": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/build/generated/res/pngs/debug/drawable-xxxhdpi/ic_baseline_search_24.png"
+    },
+    {
+        "merged": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/build/intermediates/res/merged/debug/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/src/main/res/mipmap-hdpi/ic_launcher.png"
     },
     {
         "merged": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/build/intermediates/res/merged/debug/drawable_usuario.png.flat",

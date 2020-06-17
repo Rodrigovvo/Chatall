@@ -16,6 +16,10 @@ public class ConfiguracoesActivity extends AppCompatActivity {
         toolbar.setTitle("Configurações");
         setSupportActionBar(toolbar);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+
 
     }
 }

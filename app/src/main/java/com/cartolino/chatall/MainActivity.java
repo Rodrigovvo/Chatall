@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
@@ -75,6 +76,11 @@ public class MainActivity extends AppCompatActivity {
                 finish();
 
                 break;
+            case R.id.menu_configuracoes:
+
+                abrirMenuConfigaracoes();
+
+                break;
         }
 
         return super.onOptionsItemSelected(item);
@@ -86,5 +92,10 @@ public class MainActivity extends AppCompatActivity {
                     }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    public void abrirMenuConfigaracoes(){
+        Intent intent = new Intent(MainActivity.this, ConfiguracoesActivity.class);
+        startActivity(intent);
     }
 }

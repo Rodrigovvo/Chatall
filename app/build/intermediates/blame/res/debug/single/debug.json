@@ -120,6 +120,10 @@
         "source": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/build/generated/res/pngs/debug/drawable-xxhdpi/ic_baseline_search_24.png"
     },
     {
+        "merged": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/build/intermediates/res/merged/debug/layout_activity_configuracoes.xml.flat",
+        "source": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/src/main/res/layout/activity_configuracoes.xml"
+    },
+    {
         "merged": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/build/intermediates/res/merged/debug/drawable-anydpi-v21_ic_baseline_search_24.xml.flat",
         "source": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/build/generated/res/pngs/debug/drawable-anydpi-v21/ic_baseline_search_24.xml"
     },

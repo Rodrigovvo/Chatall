@@ -58,8 +58,9 @@ public class CadastroActivity extends AppCompatActivity {
 
                             String idDoUsuario = Base64Customizada.codificarParaBase64(emailDoUserCadastrante);
                             novoUsuario.setIdUsuario(idDoUsuario);
-                            cadastarNovoUsuario();
 
+
+                            cadastarNovoUsuario();
 
                         } else {
                             Toast.makeText(CadastroActivity.this, "O campo da senha do usuário está vazio!", Toast.LENGTH_SHORT).show();
@@ -88,6 +89,16 @@ public class CadastroActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     novoUsuario.salvarUsuario();
                     finish();
+                    try {
+
+
+
+
+                    }catch (Exception e){
+                        e.printStackTrace();
+                        Toast.makeText(CadastroActivity.this, "Erro ao cadastrar usuário" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+
                 } else {
                     String excecao = "";
                     try {

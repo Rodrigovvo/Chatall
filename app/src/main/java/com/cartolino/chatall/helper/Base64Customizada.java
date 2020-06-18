@@ -5,7 +5,7 @@ import android.util.Base64;
 public class Base64Customizada {
 
     public static String codificarParaBase64(String codificando) {
-        return Base64.encodeToString(codificando.getBytes(), Base64.DEFAULT).replaceAll("([\\n|\\r])", "");
+        return Base64.encodeToString(codificando.getBytes(), Base64.DEFAULT).replaceAll("([\\n\\r])", "");
 
     }
 

@@ -1,8 +1,12 @@
 package com.cartolino.chatall.model;
 
-import android.hardware.usb.UsbDevice;
 
+
+import android.util.Log;
+
+import com.cartolino.chatall.config.ConfiguracaoFirebase;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Exclude;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class Usuario {
@@ -25,9 +29,12 @@ public class Usuario {
 
     public void salvarUsuario() {
         DatabaseReference referenciaDoFirebase = FirebaseDatabase.getInstance().getReference();
-        referenciaDoFirebase.child("usuarios").child(idUsuario).setValue(this);
+        DatabaseReference usuario  = referenciaDoFirebase.child("usuarios").child(this.idUsuario);
+        usuario.setValue(this);
+
     }
 
+    @Exclude
     public String getIdUsuario() {
         return idUsuario;
     }
@@ -52,6 +59,7 @@ public class Usuario {
         this.email = email;
     }
 
+    @Exclude
     public String getSenha() {
         return senha;
     }

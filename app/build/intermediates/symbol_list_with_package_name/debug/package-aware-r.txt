@@ -1392,6 +1392,7 @@ drawable btn_radio_off_mtrl
 drawable btn_radio_off_to_on_mtrl_animation
 drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
+drawable camera
 drawable common_full_open_on_phone
 drawable common_google_signin_btn_icon_dark
 drawable common_google_signin_btn_icon_dark_focused
@@ -1434,6 +1435,7 @@ drawable ic_mtrl_checked_circle
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
+drawable insert_photo_24
 drawable logo
 drawable mtrl_dialog_background
 drawable mtrl_dropdown_arrow
@@ -1614,6 +1616,8 @@ id icon_group
 id icon_only
 id ifRoom
 id image
+id imageCamera
+id imageGaleria
 id imageView
 id imageView2
 id include

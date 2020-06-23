@@ -2,6 +2,7 @@ package com.cartolino.chatall;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
@@ -14,6 +15,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -29,10 +31,12 @@ import com.cartolino.chatall.model.Usuario;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
+import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -69,6 +73,8 @@ public class ConfiguracoesActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        FirebaseUser usuario = UsuarioFirebase.getUsuarioAtual();
+
         imageButtonCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,6 +98,7 @@ public class ConfiguracoesActivity extends AppCompatActivity {
 
     }
 
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -102,9 +109,11 @@ public class ConfiguracoesActivity extends AppCompatActivity {
             try {
                 switch (requestCode){
                     case SELECAO_CAMERA :
-                        imagem = (Bitmap) data.getExtras().get("data");
+                        assert data != null;
+                        imagem = (Bitmap) Objects.requireNonNull(data.getExtras()).get("data");
                         break;
                     case SELECAO_GALERIA:
+                        assert data != null;
                         Uri localImagemSelecionada = data.getData();
                         imagem = MediaStore.Images.Media.getBitmap(getContentResolver(), localImagemSelecionada);
                         break;
@@ -120,10 +129,10 @@ public class ConfiguracoesActivity extends AppCompatActivity {
 
 
                     // TODO : Salvar  a imagem no Firebase
-                    referenciaImagem.child("imagens").child("perfil").child(idUsuario).child("perfil.jpeg");
+                   StorageReference imagemRef = referenciaImagem.child("imagens").child("perfil").child(idUsuario).child("perfil.jpeg");
 
 
-                    UploadTask uploadTask = referenciaImagem.putBytes( dadosImagem);
+                    UploadTask uploadTask = imagemRef.putBytes( dadosImagem);
 
                     uploadTask.addOnFailureListener(new OnFailureListener() {
                         @Override

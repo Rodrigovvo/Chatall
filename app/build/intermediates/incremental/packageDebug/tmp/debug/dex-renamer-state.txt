@@ -1,4 +1,4 @@
-#Fri Jun 19 21:16:21 BRT 2020
+#Tue Jun 23 20:16:52 BRT 2020
 base.0=/home/rodrigovvo/AndroidStudioProjects/Chatall/app/build/intermediates/dex/debug/mergeDexDebug/classes.dex
 path.0=classes.dex
 renamed.0=classes.dex

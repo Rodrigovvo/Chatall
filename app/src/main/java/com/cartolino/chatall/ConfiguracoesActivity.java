@@ -18,11 +18,13 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import com.bumptech.glide.Glide;
 import com.cartolino.chatall.config.ConfiguracaoFirebase;
 import com.cartolino.chatall.helper.Base64Customizada;
 import com.cartolino.chatall.helper.Permissao;
@@ -30,6 +32,7 @@ import com.cartolino.chatall.helper.UsuarioFirebase;
 import com.cartolino.chatall.model.Usuario;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.StorageReference;
@@ -55,6 +58,8 @@ public class ConfiguracoesActivity extends AppCompatActivity {
     private static final int SELECAO_CAMERA = 100;
     private static final int SELECAO_GALERIA = 200;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +79,21 @@ public class ConfiguracoesActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         FirebaseUser usuario = UsuarioFirebase.getUsuarioAtual();
+        Uri url = usuario.getPhotoUrl();
+
+        Log.i(" Url perfil: ", " Endereço da foto do perfil " + url);
+        if (url != null){
+
+            Glide.with(ConfiguracoesActivity.this)
+                    .load(url)
+                    .into(circleImageView);
+
+            Log.i(" Url perfil: ", " Endereço da foto do perfil glide " + url);
+
+        }else{
+            circleImageView.setImageResource(R.drawable.padrao);
+        }
+
 
         imageButtonCamera.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,7 +130,7 @@ public class ConfiguracoesActivity extends AppCompatActivity {
                 switch (requestCode){
                     case SELECAO_CAMERA :
                         assert data != null;
-                        imagem = (Bitmap) Objects.requireNonNull(data.getExtras()).get("data");
+                        imagem = (Bitmap) data.getExtras().get("data");
                         break;
                     case SELECAO_GALERIA:
                         assert data != null;
@@ -143,6 +163,21 @@ public class ConfiguracoesActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             Toast.makeText(ConfiguracoesActivity.this, " Sucesso ao carregar a imagem", Toast.LENGTH_SHORT).show();
+
+                            //Uri url = taskSnapshot.getUploadSessionUri();
+                            Task<Uri> url = taskSnapshot.getStorage().getDownloadUrl();
+                            url.addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    atualizaFotoUsuario(uri);
+
+                                    Log.d(" AtualizaFotoUsuario: ", " Url: " + uri);
+
+                                }
+                            });
+
+
+
                         }
                     });
 
@@ -155,6 +190,15 @@ public class ConfiguracoesActivity extends AppCompatActivity {
         }
     }
 
+    public void atualizaFotoUsuario(Uri url){
+        if(UsuarioFirebase.atualizarFotoUsuario(url)) {
+            Log.i(" atualização da foto", " caminho da foto" + url);
+
+        }else {
+            Log.i(" Erro atualizarFoto", "caminho da foto"  + url);
+        }
+
+    }
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);

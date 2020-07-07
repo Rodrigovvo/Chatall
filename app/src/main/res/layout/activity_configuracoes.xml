@@ -14,20 +14,20 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/circleImageViewFotoPerfil"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="150dp"
+        android:layout_width="230dp"
+        android:layout_height="230dp"
+        android:layout_marginTop="148dp"
         android:src="@drawable/padrao"
         app:civ_border_color="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="RedundantNamespace" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="409dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:background="@color/branco"
@@ -41,7 +41,7 @@
         app:layout_constraintTop_toBottomOf="@+id/circleImageViewFotoPerfil">
 
         <EditText
-            android:id="@+id/editTextTextPersonName3"
+            android:id="@+id/editTextNomePessoal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -50,12 +50,13 @@
             android:inputType="textPersonName" />
 
         <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/imageViewCorrecaoNome"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
             android:layout_gravity="center_vertical"
 
-            android:background="@drawable/editar_preto" />
+            android:background="@drawable/editar_preto"
+            android:clickable="true" />
 
     </LinearLayout>
 
@@ -69,6 +70,31 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <ImageButton
+        android:id="@+id/imageCamera"
+        android:layout_width="45dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="32dp"
+        android:background="@android:drawable/screen_background_light_transparent"
+        android:contentDescription="TODO"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toStartOf="@+id/imageGaleria"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/camera" />
+
+    <ImageButton
+        android:id="@+id/imageGaleria"
+        android:layout_width="45dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="32dp"
+        android:background="@android:drawable/screen_background_light_transparent"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imageCamera"
+        app:srcCompat="@drawable/insert_photo_24" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

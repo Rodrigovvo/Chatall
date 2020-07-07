@@ -4,7 +4,7 @@
             "outputFile": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-small-v4/values-small-v4.xml",
             "map": [
                 {
-                    "source": "/home/rodrigovvo/.gradle/caches/transforms-2/files-2.1/f64d6fad12aa3cff27bbf6b4e7023d68/material-1.1.0/res/values-small-v4/values-small-v4.xml",
+                    "source": "/home/rodrigovvo/.gradle/caches/transforms-2/files-2.1/b85b7e0481f3222852aee40ec4c0fa26/material-1.1.0/res/values-small-v4/values-small-v4.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",

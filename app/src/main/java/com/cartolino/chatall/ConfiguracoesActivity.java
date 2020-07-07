@@ -18,9 +18,12 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.Editable;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -46,7 +49,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class ConfiguracoesActivity extends AppCompatActivity {
 
     private ImageButton imageButtonCamera, imageButtonGaleria;
+    private ImageView imageViewCorrecaoNome;
     private CircleImageView circleImageView;
+    private EditText editTextNome;
     private String idUsuario = UsuarioFirebase.getIdUsuario();
     private StorageReference referenciaImagem = ConfiguracaoFirebase.getFirebaseStorage();
 
@@ -54,6 +59,8 @@ public class ConfiguracoesActivity extends AppCompatActivity {
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.CAMERA
     } ;
+
+    private Usuario usuarioLogado;
 
     private static final int SELECAO_CAMERA = 100;
     private static final int SELECAO_GALERIA = 200;
@@ -65,9 +72,13 @@ public class ConfiguracoesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_configuracoes);
 
+        usuarioLogado = UsuarioFirebase.getDadosUsuarioLogado();
+
         imageButtonCamera   = findViewById(R.id.imageCamera);
         imageButtonGaleria  = findViewById(R.id.imageGaleria);
         circleImageView     = findViewById(R.id.circleImageViewFotoPerfil);
+        editTextNome        = findViewById(R.id.editTextNomePessoal);
+        imageViewCorrecaoNome= findViewById(R.id.imageViewCorrecaoNome);
 
         //Validar Permissoes
         Permissao.validarPermissoes( permissoesNecessarias, this, 1);
@@ -78,7 +89,7 @@ public class ConfiguracoesActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        FirebaseUser usuario = UsuarioFirebase.getUsuarioAtual();
+        final FirebaseUser usuario = UsuarioFirebase.getUsuarioAtual();
         Uri url = usuario.getPhotoUrl();
 
         Log.i(" Url perfil: ", " Endereço da foto do perfil " + url);
@@ -94,6 +105,8 @@ public class ConfiguracoesActivity extends AppCompatActivity {
             circleImageView.setImageResource(R.drawable.padrao);
         }
 
+        editTextNome.setText(usuario.getDisplayName());
+
 
         imageButtonCamera.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,7 +118,6 @@ public class ConfiguracoesActivity extends AppCompatActivity {
             }
         });
 
-
         imageButtonGaleria.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -113,6 +125,18 @@ public class ConfiguracoesActivity extends AppCompatActivity {
                 if (intent.resolveActivity(getPackageManager()) != null){
                     startActivityForResult(intent, SELECAO_GALERIA);
                 }
+            }
+        });
+
+        imageViewCorrecaoNome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String novoNome = editTextNome.getText().toString();
+                atualizarNomeUsuario(novoNome);
+                usuarioLogado.setNome(novoNome);
+                usuarioLogado.atualizar();
+                Toast.makeText(ConfiguracoesActivity.this, "Alteração do nome do Usuário \nRealizada com Sucesso!", Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -192,13 +216,24 @@ public class ConfiguracoesActivity extends AppCompatActivity {
 
     public void atualizaFotoUsuario(Uri url){
         if(UsuarioFirebase.atualizarFotoUsuario(url)) {
-            Log.i(" atualização da foto", " caminho da foto" + url);
+            usuarioLogado.setFoto(url.toString());
+            usuarioLogado.atualizar();
+            Log.i("atualização da foto", " OK - caminho da foto" + url);
 
         }else {
             Log.i(" Erro atualizarFoto", "caminho da foto"  + url);
         }
 
     }
+
+    public void atualizarNomeUsuario(String nome){
+        if(UsuarioFirebase.atualizarNomeUsuario(nome)){
+            Log.i("Atualização de nome", " novo nome: " + nome);
+        } else{
+            Log.i("Erro na atualização", " novo nome: " + nome);
+        }
+    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);

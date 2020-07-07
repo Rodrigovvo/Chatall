@@ -1583,7 +1583,7 @@ id dimensions
 id direct
 id disableHome
 id dropdown_menu
-id editTextTextPersonName3
+id editTextNomePessoal
 id editText_EmailLogin
 id editText_SenhaLogin
 id edit_query
@@ -1620,7 +1620,7 @@ id image
 id imageCamera
 id imageGaleria
 id imageView
-id imageView2
+id imageViewCorrecaoNome
 id include
 id info
 id invisible

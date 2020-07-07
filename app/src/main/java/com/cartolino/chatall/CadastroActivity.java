@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.cartolino.chatall.config.ConfiguracaoFirebase;
 import com.cartolino.chatall.helper.Base64Customizada;
+import com.cartolino.chatall.helper.UsuarioFirebase;
 import com.cartolino.chatall.model.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -88,6 +89,7 @@ public class CadastroActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     novoUsuario.salvarUsuario();
+                    UsuarioFirebase.atualizarNomeUsuario(novoUsuario.getNome());
                     finish();
                     try {
 

@@ -10,27 +10,30 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:src="@android:mipmap/sym_def_app_icon"/>
+
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/textNome_do_Contato"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
             android:text="Nome do Contato"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"/>
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/textEmail_do_Contato"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
+            android:padding="3dp"
             android:text="Email do Contato"
-            android:textSize="16sp"/>
+            android:textSize="16sp" />
     </LinearLayout>
 
 

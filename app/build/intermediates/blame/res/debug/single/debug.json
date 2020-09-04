@@ -52,6 +52,10 @@
         "source": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/src/main/res/layout/fragment_contatos.xml"
     },
     {
+        "merged": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/build/intermediates/res/merged/debug/layout_activity_chat.xml.flat",
+        "source": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/src/main/res/layout/activity_chat.xml"
+    },
+    {
         "merged": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/build/intermediates/res/merged/debug/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
         "source": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml"
     },
@@ -62,6 +66,14 @@
     {
         "merged": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/build/intermediates/res/merged/debug/drawable_ic_launcher_background.xml.flat",
         "source": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/src/main/res/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/build/intermediates/res/merged/debug/layout_content_chat.xml.flat",
+        "source": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/src/main/res/layout/content_chat.xml"
+    },
+    {
+        "merged": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/build/intermediates/res/merged/debug/drawable_input_text_chat.xml.flat",
+        "source": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/src/main/res/drawable/input_text_chat.xml"
     },
     {
         "merged": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/build/intermediates/res/merged/debug/mipmap-hdpi_ic_launcher.png.flat",
@@ -84,8 +96,16 @@
         "source": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/src/main/res/drawable/editar_preto.xml"
     },
     {
+        "merged": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/build/intermediates/res/merged/debug/layout_chat_toolbar.xml.flat",
+        "source": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/src/main/res/layout/chat_toolbar.xml"
+    },
+    {
         "merged": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/build/intermediates/res/merged/debug/drawable-v24_ic_launcher_foreground.xml.flat",
         "source": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/src/main/res/drawable-v24/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/build/intermediates/res/merged/debug/drawable_vetor_envio.xml.flat",
+        "source": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/src/main/res/drawable/vetor_envio.xml"
     },
     {
         "merged": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/build/intermediates/res/merged/debug/layout_activity_configuracoes.xml.flat",

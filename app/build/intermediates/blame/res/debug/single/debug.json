@@ -8,6 +8,10 @@
         "source": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/src/main/res/drawable/logo.png"
     },
     {
+        "merged": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/build/intermediates/res/merged/debug/drawable_bg_chat.png.flat",
+        "source": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/src/main/res/drawable/bg_chat.png"
+    },
+    {
         "merged": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/build/intermediates/res/merged/debug/layout_toolbar.xml.flat",
         "source": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/src/main/res/layout/toolbar.xml"
     },
@@ -84,6 +88,10 @@
         "source": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/src/main/res/drawable/usuario.png"
     },
     {
+        "merged": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/build/intermediates/res/merged/debug/layout_divisor.xml.flat",
+        "source": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/src/main/res/layout/divisor.xml"
+    },
+    {
         "merged": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/build/intermediates/res/merged/debug/mipmap-mdpi_ic_launcher_round.png.flat",
         "source": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/src/main/res/mipmap-mdpi/ic_launcher_round.png"
     },
@@ -100,12 +108,12 @@
         "source": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/src/main/res/layout/chat_toolbar.xml"
     },
     {
-        "merged": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/build/intermediates/res/merged/debug/drawable-v24_ic_launcher_foreground.xml.flat",
-        "source": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/src/main/res/drawable-v24/ic_launcher_foreground.xml"
-    },
-    {
         "merged": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/build/intermediates/res/merged/debug/drawable_vetor_envio.xml.flat",
         "source": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/src/main/res/drawable/vetor_envio.xml"
+    },
+    {
+        "merged": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/build/intermediates/res/merged/debug/drawable-v24_ic_launcher_foreground.xml.flat",
+        "source": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/src/main/res/drawable-v24/ic_launcher_foreground.xml"
     },
     {
         "merged": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/build/intermediates/res/merged/debug/layout_activity_configuracoes.xml.flat",

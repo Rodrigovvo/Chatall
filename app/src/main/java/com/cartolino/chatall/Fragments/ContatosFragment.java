@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,7 +77,9 @@ public class ContatosFragment extends Fragment {
 
                     @Override
                     public void onItemClick(View view, int position) {
+                        Usuario usuarioSelecionado = listaContatos.get(position);
                         Intent intent  = new Intent(getActivity(), ChatActivity.class);
+                        intent.putExtra("chatContato", usuarioSelecionado);
                         startActivity(intent);
                     }
 

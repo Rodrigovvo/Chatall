@@ -4,7 +4,7 @@
             "outputFile": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-watch-v20/values-watch-v20.xml",
             "map": [
                 {
-                    "source": "/home/rodrigovvo/.gradle/caches/transforms-2/files-2.1/95c27f1e561f59170f577bf124144243/appcompat-1.1.0/res/values-watch-v20/values-watch-v20.xml",
+                    "source": "/home/rodrigovvo/.gradle/caches/transforms-2/files-2.1/2623c5ec6fa92d68e711128d15e9038d/appcompat-1.2.0/res/values-watch-v20/values-watch-v20.xml",
                     "from": {
                         "startLines": "2,5,8",
                         "startColumns": "4,4,4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "/home/rodrigovvo/.gradle/caches/transforms-2/files-2.1/6d14325ed35863757137b9086d7822f7/jetified-play-services-auth-18.0.0/res/values-watch-v20/values.xml",
+                    "source": "/home/rodrigovvo/.gradle/caches/transforms-2/files-2.1/bd15c1042c9c3e1feddcdb7b9c87d6a4/jetified-play-services-auth-18.0.0/res/values-watch-v20/values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11",
                         "startColumns": "0,0,0,0,0,0,0,0",

@@ -96,6 +96,10 @@
         "source": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/src/main/res/drawable/usuario.png"
     },
     {
+        "merged": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/build/intermediates/res/merged/debug/layout-v21_adapter_mensagem_remetente.xml.flat",
+        "source": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/src/main/res/layout-v21/adapter_mensagem_remetente.xml"
+    },
+    {
         "merged": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/build/intermediates/res/merged/debug/layout_divisor.xml.flat",
         "source": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/src/main/res/layout/divisor.xml"
     },

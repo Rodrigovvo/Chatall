@@ -1752,6 +1752,7 @@ id collapseActionView
 id confirm_button
 id container
 id content
+id contentChat_RecyclerMsg
 id contentPanel
 id coordinator
 id cos
@@ -1791,6 +1792,7 @@ id editText_EmailLogin
 id editText_SenhaLogin
 id edit_query
 id end
+id endCustomIcon
 id end_padder
 id enterAlways
 id enterAlwaysCollapsed

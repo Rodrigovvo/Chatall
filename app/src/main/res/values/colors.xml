@@ -5,4 +5,7 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="branco">#ffffff</color>
     <color name="cinza">#eeeeee</color>
+
+    <color name="balaoRemetente">#dbf9c4</color>
+
 </resources>

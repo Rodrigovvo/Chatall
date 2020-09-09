@@ -9,9 +9,9 @@ import com.bumptech.glide.Glide;
 
 public class LoadFotoPerfil {
 
-    public LoadFotoPerfil(Context context, String url, ImageView view) {
-        if(url != null){
-            Uri uri = Uri.parse(url);
+    public LoadFotoPerfil(Context context, String caminhoURLDaImagem, ImageView view) {
+        if(caminhoURLDaImagem != null){
+            Uri uri = Uri.parse(caminhoURLDaImagem);
             Glide.with(context).load(uri).into(view);
         }
 

@@ -45,6 +45,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/contentChat_RecyclerMsg"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="10dp"

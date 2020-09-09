@@ -1,5 +1,8 @@
 package com.cartolino.chatall;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -10,11 +13,18 @@ import com.cartolino.chatall.helper.LoadFotoPerfil;
 import com.cartolino.chatall.helper.UsuarioFirebase;
 import com.cartolino.chatall.model.Mensagem;
 import com.cartolino.chatall.model.Usuario;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,27 +35,37 @@ import androidx.core.view.DragStartHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ChatActivity extends AppCompatActivity {
+
+    public static final int SELECAO_GALERIA = 100;
 
     private TextView toolbarNome;
     private CircleImageView toolbarFoto;
     private Usuario usuarioDestinatario;
     private EditText  chatEditMsgDigitada;
+    private TextInputLayout textInputLayout;
     private RecyclerView contentChat_RecyclerMsg;
     private MensagensAdapter adapter;
     private List<Mensagem> mensagemList = new ArrayList<>();
     private ChildEventListener childEventListenerMensagens;
 
+    private StorageReference referenciaImagem = ConfiguracaoFirebase.getFirebaseStorage();
     private DatabaseReference databaseReference;
     private DatabaseReference mensagensRef;
 
@@ -66,6 +86,9 @@ public class ChatActivity extends AppCompatActivity {
         toolbarFoto              = findViewById(R.id.chat_toolbar_circleImageView);
         chatEditMsgDigitada      = findViewById(R.id.chatEditMsgDigitada);
         contentChat_RecyclerMsg  = findViewById(R.id.contentChat_RecyclerMsg);
+        textInputLayout          = findViewById(R.id.textInputLayout);
+
+
 
 
         // Recuperar os dados do usuário
@@ -114,6 +137,18 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
+        textInputLayout.setEndIconOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);;
+                if (intent.resolveActivity(getPackageManager()) != null){
+                    startActivityForResult(intent, SELECAO_GALERIA);
+                }
+
+            }
+        });
+
     }
 
     private void salvarMensagem(String idRemetente, String idDestinatario, Mensagem msg){
@@ -156,6 +191,85 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+
+        if (resultCode == RESULT_OK){
+            Bitmap imagem = null;
+
+            try {
+                switch (requestCode){
+                    case SELECAO_GALERIA:
+                        assert data != null;
+                        Uri localImagemSelecionada = data.getData();
+                        try {
+                            imagem = MediaStore.Images.Media.getBitmap(getContentResolver(), localImagemSelecionada);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                }
+
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    imagem.compress(Bitmap.CompressFormat.JPEG, 70, baos);
+                    byte[] dadosImagem = baos.toByteArray();
+
+                    String nomeImagem = UUID.randomUUID().toString();
+
+                    StorageReference imagemRef = referenciaImagem.child("fotos")
+                            .child(idUsuarioRemetente)
+                            .child(idUsuarioDestinatario)
+                            .child(nomeImagem);
+
+
+                    UploadTask uploadTask = imagemRef.putBytes( dadosImagem);
+
+                    uploadTask.addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(ChatActivity.this, " Erro ao fazer o upload da imagem", Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            Toast.makeText(ChatActivity.this, " Sucesso ao carregar a imagem", Toast.LENGTH_SHORT).show();
+
+                            //Uri url = taskSnapshot.getUploadSessionUri();
+                            Task<Uri> url = taskSnapshot.getStorage().getDownloadUrl();
+                            final String dowloadUrl = url.toString();
+                            url.addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+
+                                    Mensagem msgComImagem = new Mensagem();
+                                    msgComImagem.setImagem(dowloadUrl);
+                                    msgComImagem.setIdUsuario(idUsuarioRemetente);
+                                    msgComImagem.setMensagem("imagem.jpeg");
+                                   salvarMensagem(idUsuarioRemetente, idUsuarioDestinatario, msgComImagem);
+                                   salvarMensagem(idUsuarioDestinatario, idUsuarioRemetente, msgComImagem);
+
+                                    Log.d(" AtualizaFotoUsuario: ", " Url: " + uri);
+
+                                    Toast.makeText(ChatActivity.this,
+                                            "Sucesso ao enviar imagem",
+                                            Toast.LENGTH_SHORT).show();
+
+                                }
+                            });
+
+                 }
+                    });
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        } else  {
+            Toast.makeText(ChatActivity.this, " Erro ao processar a imagem", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

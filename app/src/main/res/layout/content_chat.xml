@@ -45,15 +45,15 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/contentChat_RecyclerMsg"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
+        app:layout_constraintBottom_toTopOf="@+id/endCustomIcon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include2"
-        android:id="@+id/contentChat_RecyclerMsg"/>
+        app:layout_constraintTop_toBottomOf="@+id/include2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

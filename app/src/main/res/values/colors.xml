@@ -6,6 +6,9 @@
     <color name="branco">#ffffff</color>
     <color name="cinza">#eeeeee</color>
 
+
     <color name="balaoRemetente">#dbf9c4</color>
+
+    <color name="balao_remetente">#dbf9c4</color>
 
 </resources>

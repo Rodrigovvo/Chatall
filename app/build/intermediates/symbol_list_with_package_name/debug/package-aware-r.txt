@@ -952,6 +952,8 @@ color background_floating_material_dark
 color background_floating_material_light
 color background_material_dark
 color background_material_light
+color balaoRemetente
+color balao_remetente
 color branco
 color bright_foreground_disabled_material_dark
 color bright_foreground_disabled_material_light
@@ -1549,6 +1551,7 @@ drawable abc_textfield_search_material
 drawable abc_vector_test
 drawable avd_hide_password
 drawable avd_show_password
+drawable bg_balao
 drawable bg_chat
 drawable btn_checkbox_checked_mtrl
 drawable btn_checkbox_checked_to_unchecked_mtrl_animation
@@ -1832,6 +1835,7 @@ id ignoreRequest
 id image
 id imageCamera
 id imageGaleria
+id imageMsgFoto
 id imageView
 id imageViewCorrecaoNome
 id include2
@@ -1997,9 +2001,9 @@ id textCadastro
 id textEmail_do_Contato
 id textEnd
 id textInputEmail_Cadastro
-id textInputLayout
 id textInputNome
 id textInputSenha_Cadastro
+id textMsgTexto
 id textNome_do_Contato
 id textSpacerNoButtons
 id textSpacerNoTitle
@@ -2109,6 +2113,8 @@ layout activity_configuracoes
 layout activity_login
 layout activity_main
 layout activity_tela_principal
+layout adapter_mensagem_destinatario
+layout adapter_mensagem_remetente
 layout chat_toolbar
 layout contato_recycler_view
 layout content_chat

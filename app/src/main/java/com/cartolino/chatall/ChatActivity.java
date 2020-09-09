@@ -215,7 +215,7 @@ public class ChatActivity extends AppCompatActivity {
                 }
 
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                    imagem.compress(Bitmap.CompressFormat.JPEG, 70, baos);
+                    imagem.compress(Bitmap.CompressFormat.JPEG, 45, baos);
                     byte[] dadosImagem = baos.toByteArray();
 
                     String nomeImagem = UUID.randomUUID().toString();

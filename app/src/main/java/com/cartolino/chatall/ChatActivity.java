@@ -96,6 +96,8 @@ public class ChatActivity extends AppCompatActivity {
             new LoadFotoPerfil(this, foto, toolbarFoto);
         }
 
+
+
         adapter = new MensagensAdapter(getApplicationContext(), mensagemList);
         contentChat_RecyclerMsg.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         contentChat_RecyclerMsg.setHasFixedSize(true);

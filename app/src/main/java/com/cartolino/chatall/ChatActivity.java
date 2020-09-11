@@ -17,7 +17,6 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -29,14 +28,11 @@ import com.google.firebase.storage.UploadTask;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.DragStartHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -239,11 +235,12 @@ public class ChatActivity extends AppCompatActivity {
                             Toast.makeText(ChatActivity.this, " Sucesso ao carregar a imagem", Toast.LENGTH_SHORT).show();
 
                             //Uri url = taskSnapshot.getUploadSessionUri();
+                               // Task<Uri> url = taskSnapshot.getStorage().getDownloadUrl();
+                               // final String dowloadUrl = url.toString();
                             Task<Uri> url = taskSnapshot.getStorage().getDownloadUrl();
-                            final String dowloadUrl = url.toString();
-                            url.addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                @Override
-                                public void onSuccess(Uri uri) {
+                            String dowloadUrl = url.getResult().toString();
+
+                            //getDownloadUrl().toString();
 
                                     Mensagem msgComImagem = new Mensagem();
                                     msgComImagem.setImagem(dowloadUrl);
@@ -252,14 +249,12 @@ public class ChatActivity extends AppCompatActivity {
                                    salvarMensagem(idUsuarioRemetente, idUsuarioDestinatario, msgComImagem);
                                    salvarMensagem(idUsuarioDestinatario, idUsuarioRemetente, msgComImagem);
 
-                                    Log.d(" AtualizaFotoUsuario: ", " Url: " + uri);
 
                                     Toast.makeText(ChatActivity.this,
                                             "Sucesso ao enviar imagem",
                                             Toast.LENGTH_SHORT).show();
 
-                                }
-                            });
+
 
                  }
                     });
@@ -275,6 +270,7 @@ public class ChatActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        contentChat_RecyclerMsg.invalidate();
         recuperarMensagens();
     }
 

@@ -1,5 +1,6 @@
 package com.cartolino.chatall.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,12 +13,16 @@ import androidx.recyclerview.widget.RecyclerView.LayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
+import com.cartolino.chatall.ChatActivity;
 import com.cartolino.chatall.R;
 import com.cartolino.chatall.adapter.ConversasAdapter;
 import com.cartolino.chatall.config.ConfiguracaoFirebase;
+import com.cartolino.chatall.helper.RecyclerItemClickListener;
 import com.cartolino.chatall.helper.UsuarioFirebase;
 import com.cartolino.chatall.model.Conversa;
+import com.cartolino.chatall.model.Usuario;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -61,6 +66,31 @@ public class ConversasFragment extends Fragment {
         conversaRecycler.setLayoutManager(layoutManager);
         conversaRecycler.setHasFixedSize(true);
         conversaRecycler.setAdapter(adapter);
+
+        conversaRecycler.addOnItemTouchListener(new RecyclerItemClickListener(
+                getActivity(),
+                conversaRecycler,
+                new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        Conversa conversaSelecionada = conversas.get(position);
+
+                        Intent intent  = new Intent(getActivity(), ChatActivity.class);
+                        intent.putExtra("chatContato", conversaSelecionada.getUsuarioExibicao());
+                        startActivity(intent);
+                    }
+
+                    @Override
+                    public void onLongItemClick(View view, int position) {
+
+                    }
+
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                    }
+                }
+        ));
 
         return view;
     }

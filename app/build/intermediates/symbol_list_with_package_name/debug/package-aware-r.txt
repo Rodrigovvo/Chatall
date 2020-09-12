@@ -1756,6 +1756,9 @@ id container
 id content
 id contentChat_RecyclerMsg
 id contentPanel
+id converaLastMsg
+id conversaCircleImage
+id conversaNome_do_Contato
 id coordinator
 id cos
 id custom
@@ -1811,6 +1814,7 @@ id fitToContents
 id fixed
 id flip
 id forever
+id fragmentConversasRecycler
 id fragment_container_view_tag
 id ghost_view
 id ghost_view_holder
@@ -2117,6 +2121,7 @@ layout adapter_mensagem_remetente
 layout chat_toolbar
 layout contato_recycler_view
 layout content_chat
+layout conversa_recycler_view
 layout custom_dialog
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog

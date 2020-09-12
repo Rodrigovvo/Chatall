@@ -11,12 +11,12 @@ import com.cartolino.chatall.config.ConfiguracaoFirebase;
 import com.cartolino.chatall.helper.Base64Customizada;
 import com.cartolino.chatall.helper.LoadFotoPerfil;
 import com.cartolino.chatall.helper.UsuarioFirebase;
+import com.cartolino.chatall.model.Conversa;
 import com.cartolino.chatall.model.Mensagem;
 import com.cartolino.chatall.model.Usuario;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
@@ -88,8 +88,6 @@ public class ChatActivity extends AppCompatActivity {
         textInputLayout          = findViewById(R.id.textInputLayout);
 
 
-
-
         // Recuperar os dados do usuário
         Bundle b = getIntent().getExtras();
         if(b != null){
@@ -98,7 +96,6 @@ public class ChatActivity extends AppCompatActivity {
             String foto = usuarioDestinatario.getFoto();
             new LoadFotoPerfil(this, foto, toolbarFoto);
         }
-
 
 
         adapter = new MensagensAdapter(getApplicationContext(), mensagemList);
@@ -126,6 +123,8 @@ public class ChatActivity extends AppCompatActivity {
                     mensagem.setMensagem(mensagemEscrita);
                     try {
                         salvarMensagem(idUsuarioRemetente, idUsuarioDestinatario, mensagem);
+                        salvarMensagem(idUsuarioDestinatario, idUsuarioRemetente, mensagem);
+                        salvarConversa(mensagem);
                         chatEditMsgDigitada.setText("");
                     }catch (Exception e ){
                         e.printStackTrace();
@@ -159,6 +158,16 @@ public class ChatActivity extends AppCompatActivity {
                 .child(idDestinatario)
                 .push()
                 .setValue(msg);
+    }
+
+    private void salvarConversa(Mensagem mensagem){
+        Conversa conversaRemetente = new Conversa();
+        conversaRemetente.setIdDestinatario(idUsuarioDestinatario);
+        conversaRemetente.setIdRemetente(idUsuarioRemetente);
+        conversaRemetente.setUltimaMSG(mensagem.getMensagem());
+        conversaRemetente.setUsuarioExibicao(usuarioDestinatario);
+
+        conversaRemetente.salvar();
     }
 
     private void recuperarMensagens(){
@@ -255,11 +264,8 @@ public class ChatActivity extends AppCompatActivity {
                                 msgComImagem.setMensagem("imagem.jpeg");
                                 salvarMensagem(idUsuarioRemetente, idUsuarioDestinatario, msgComImagem);
                                 salvarMensagem(idUsuarioDestinatario, idUsuarioRemetente, msgComImagem);
-                                Log.d("Imagem", "Msg" + msgComImagem);
 
-                                Toast.makeText(ChatActivity.this,
-                                        "Sucesso ao enviar imagem",
-                                        Toast.LENGTH_SHORT).show();
+                                salvarConversa(msgComImagem);
                             }
                         }
 
@@ -276,9 +282,9 @@ public class ChatActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        contentChat_RecyclerMsg.invalidate();
         recuperarMensagens();
     }
+
 
     @Override
     protected void onStop() {

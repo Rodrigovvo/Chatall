@@ -13,6 +13,8 @@ import com.cartolino.chatall.helper.LoadFotoPerfil;
 import com.cartolino.chatall.helper.UsuarioFirebase;
 import com.cartolino.chatall.model.Mensagem;
 import com.cartolino.chatall.model.Usuario;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -33,6 +35,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -206,6 +209,7 @@ public class ChatActivity extends AppCompatActivity {
                         Uri localImagemSelecionada = data.getData();
                         try {
                             imagem = MediaStore.Images.Media.getBitmap(getContentResolver(), localImagemSelecionada);
+                            Log.d("Imagem", "Url " + localImagemSelecionada.toString());
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -218,7 +222,7 @@ public class ChatActivity extends AppCompatActivity {
 
                     String nomeImagem = UUID.randomUUID().toString();
 
-                    StorageReference imagemRef = referenciaImagem.child("fotos")
+                    final StorageReference imagemRef = referenciaImagem.child("fotos")
                             .child(idUsuarioRemetente)
                             .child(idUsuarioDestinatario)
                             .child(nomeImagem);
@@ -226,48 +230,48 @@ public class ChatActivity extends AppCompatActivity {
 
                     UploadTask uploadTask = imagemRef.putBytes( dadosImagem);
 
-                    uploadTask.addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(ChatActivity.this, " Erro ao fazer o upload da imagem", Toast.LENGTH_SHORT).show();
+                Task<Uri> urlTask;
+                urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                    @Override
+                    public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                        if (!task.isSuccessful()) {
+                            throw task.getException();
                         }
-                    }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            Toast.makeText(ChatActivity.this, " Sucesso ao carregar a imagem", Toast.LENGTH_SHORT).show();
 
-                            //Uri url = taskSnapshot.getUploadSessionUri();
-                               // Task<Uri> url = taskSnapshot.getStorage().getDownloadUrl();
-                               // final String dowloadUrl = url.toString();
-                            Task<Uri> url = taskSnapshot.getStorage().getDownloadUrl();
-                            String dowloadUrl = url.getResult().toString();
+                        // Continue with the task to get the download URL
+                        return imagemRef.getDownloadUrl();
+                    }
+                }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Uri> task) {
+                        if (task.isSuccessful()) {
+                            Uri downloadUri = task.getResult();
+                            String dowloadUrl = downloadUri.toString();
+                            if (dowloadUrl != null) {
 
-                            //getDownloadUrl().toString();
+                                Mensagem msgComImagem = new Mensagem();
+                                msgComImagem.setImagem(dowloadUrl);
+                                msgComImagem.setIdUsuario(idUsuarioRemetente);
+                                msgComImagem.setMensagem("imagem.jpeg");
+                                salvarMensagem(idUsuarioRemetente, idUsuarioDestinatario, msgComImagem);
+                                salvarMensagem(idUsuarioDestinatario, idUsuarioRemetente, msgComImagem);
+                                Log.d("Imagem", "Msg" + msgComImagem);
 
-                                    Mensagem msgComImagem = new Mensagem();
-                                    msgComImagem.setImagem(dowloadUrl);
-                                    msgComImagem.setIdUsuario(idUsuarioRemetente);
-                                    msgComImagem.setMensagem("imagem.jpeg");
-                                   salvarMensagem(idUsuarioRemetente, idUsuarioDestinatario, msgComImagem);
-                                   salvarMensagem(idUsuarioDestinatario, idUsuarioRemetente, msgComImagem);
+                                Toast.makeText(ChatActivity.this,
+                                        "Sucesso ao enviar imagem",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        }
 
-
-                                    Toast.makeText(ChatActivity.this,
-                                            "Sucesso ao enviar imagem",
-                                            Toast.LENGTH_SHORT).show();
-
-
-
-                 }
-                    });
-
-            }catch (Exception e){
+                    }
+                });
+            } catch (Exception e) {
                 e.printStackTrace();
             }
-        } else  {
-            Toast.makeText(ChatActivity.this, " Erro ao processar a imagem", Toast.LENGTH_SHORT).show();
         }
     }
+
+
 
     @Override
     protected void onStart() {

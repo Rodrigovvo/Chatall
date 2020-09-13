@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+#Sat Sep 12 19:55:38 BRT 2020
+=======
+<<<<<<< HEAD
 #Tue Sep 08 22:52:23 BRT 2020
 =======
 #Fri Sep 11 20:01:53 BRT 2020
 >>>>>>> correcao
+>>>>>>> master
 base.0=/home/rodrigovvo/AndroidStudioProjects/Chatall/app/build/intermediates/dex/debug/mergeDexDebug/classes.dex
 path.0=classes.dex
 renamed.0=classes.dex

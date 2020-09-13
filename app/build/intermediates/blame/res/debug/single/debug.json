@@ -92,6 +92,10 @@
         "source": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/src/main/res/mipmap-hdpi/ic_launcher.png"
     },
     {
+        "merged": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/build/intermediates/res/merged/debug/layout_conversa_recycler_view.xml.flat",
+        "source": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/src/main/res/layout/conversa_recycler_view.xml"
+    },
+    {
         "merged": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/build/intermediates/res/merged/debug/drawable_usuario.png.flat",
         "source": "/home/rodrigovvo/AndroidStudioProjects/Chatall/app/src/main/res/drawable/usuario.png"
     },

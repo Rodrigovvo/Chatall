@@ -57,8 +57,10 @@ public class ChatActivity extends AppCompatActivity {
     private TextView toolbarNome;
     private CircleImageView toolbarFoto;
     private Usuario usuarioDestinatario;
+
     private EditText  chatEditMsgDigitada;
     private TextInputLayout textInputLayout;
+
     private RecyclerView contentChat_RecyclerMsg;
     private MensagensAdapter adapter;
     private List<Mensagem> mensagemList = new ArrayList<>();
@@ -81,6 +83,7 @@ public class ChatActivity extends AppCompatActivity {
             Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         }
         FloatingActionButton fab = findViewById(R.id.fab);
+
         toolbarNome              = findViewById(R.id.chat_toolbar_textNomeUsuario);
         toolbarFoto              = findViewById(R.id.chat_toolbar_circleImageView);
         chatEditMsgDigitada      = findViewById(R.id.chatEditMsgDigitada);
@@ -90,7 +93,7 @@ public class ChatActivity extends AppCompatActivity {
 
         // Recuperar os dados do usuário
         Bundle b = getIntent().getExtras();
-        if(b != null){
+        if (b != null) {
             usuarioDestinatario = (Usuario) b.getSerializable("chatContato");
             toolbarNome.setText(usuarioDestinatario.getNome());
             String foto = usuarioDestinatario.getFoto();
@@ -117,21 +120,21 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String mensagemEscrita = chatEditMsgDigitada.getText().toString();
-                if (!mensagemEscrita.isEmpty()){
+                if (!mensagemEscrita.isEmpty()) {
                     Mensagem mensagem = new Mensagem();
-                    mensagem.setIdUsuario( idUsuarioRemetente);
+                    mensagem.setIdUsuario(idUsuarioRemetente);
                     mensagem.setMensagem(mensagemEscrita);
                     try {
                         salvarMensagem(idUsuarioRemetente, idUsuarioDestinatario, mensagem);
                         salvarMensagem(idUsuarioDestinatario, idUsuarioRemetente, mensagem);
                         salvarConversa(mensagem);
                         chatEditMsgDigitada.setText("");
-                    }catch (Exception e ){
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
 
 
-                }else{
+                } else {
                     Toast.makeText(ChatActivity.this, "Digite sua mensagem!", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -151,7 +154,7 @@ public class ChatActivity extends AppCompatActivity {
 
     }
 
-    private void salvarMensagem(String idRemetente, String idDestinatario, Mensagem msg){
+    private void salvarMensagem(String idRemetente, String idDestinatario, Mensagem msg) {
         DatabaseReference databaseReference = ConfiguracaoFirebase.getBaseDeDados();
         DatabaseReference mensagemRef = databaseReference.child("mensagens");
         mensagemRef.child(idRemetente)
@@ -159,6 +162,7 @@ public class ChatActivity extends AppCompatActivity {
                 .push()
                 .setValue(msg);
     }
+
 
     private void salvarConversa(Mensagem mensagem){
         Conversa conversaRemetente = new Conversa();
@@ -172,6 +176,7 @@ public class ChatActivity extends AppCompatActivity {
 
     private void recuperarMensagens(){
         childEventListenerMensagens =  mensagensRef.addChildEventListener(new ChildEventListener() {
+
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 Mensagem mensagem = snapshot.getValue(Mensagem.class);

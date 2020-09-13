@@ -53,8 +53,10 @@ public class MensagensAdapter extends RecyclerView.Adapter<MensagensAdapter.MyVi
             new LoadFotoPerfil(context, imagem, holder.imagem);
             holder.mensagem.setVisibility(View.GONE);
         } else {
+
             holder.mensagem.setText(msg);
             holder.imagem.setVisibility(View.GONE);
+
         }
     }
 

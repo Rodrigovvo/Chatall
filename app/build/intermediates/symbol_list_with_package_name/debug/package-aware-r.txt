@@ -952,6 +952,7 @@ color background_floating_material_dark
 color background_floating_material_light
 color background_material_dark
 color background_material_light
+color balaoRemetente
 color balao_remetente
 color branco
 color bright_foreground_disabled_material_dark
@@ -1797,6 +1798,7 @@ id editText_EmailLogin
 id editText_SenhaLogin
 id edit_query
 id end
+id endCustomIcon
 id end_padder
 id enterAlways
 id enterAlwaysCollapsed
@@ -2003,7 +2005,6 @@ id textCadastro
 id textEmail_do_Contato
 id textEnd
 id textInputEmail_Cadastro
-id textInputLayout
 id textInputNome
 id textInputSenha_Cadastro
 id textMsgTexto

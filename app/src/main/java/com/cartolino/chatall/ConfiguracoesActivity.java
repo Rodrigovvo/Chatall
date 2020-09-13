@@ -39,6 +39,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ConfiguracoesActivity extends AppCompatActivity {
 
+    private static final int SELECAO_CAMERA = 100;
+    private static final int SELECAO_GALERIA = 200;
+
     private ImageButton imageButtonCamera, imageButtonGaleria;
     private ImageView imageViewCorrecaoNome;
     private CircleImageView circleImageView;
@@ -53,8 +56,7 @@ public class ConfiguracoesActivity extends AppCompatActivity {
 
     private Usuario usuarioLogado;
 
-    private static final int SELECAO_CAMERA = 100;
-    private static final int SELECAO_GALERIA = 200;
+
 
 
 
